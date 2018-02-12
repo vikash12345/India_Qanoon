@@ -8,7 +8,8 @@ $browser	=	file_get_html('https://indiankanoon.org/browse');
 foreach($browser->find("//td/div[@class='browselist']/")as $element)
 {
 $page 		=	$element->find("a",0)->href;
-
+$pagetext	=	$element->find("a",0)->plaintext;
+echo $pagetext.'\n';
 if($page)
 {
 	$link	=	'https://indiankanoon.org/'.$page;
@@ -16,6 +17,7 @@ if($page)
 	foreach($pageofyears->find("/html/body/div[2]/table/tbody/tr/td/div[@class='browselist']")as $year)
 	{
 		$yearlink	=	$year->find("a",0)->href;
+		
 		if($yearlink)
 		{
 			$pagelink		=	 'https://indiankanoon.org'.$yearlink;
