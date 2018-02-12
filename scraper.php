@@ -2,8 +2,8 @@
 // This is a template for a PHP scraper on morph.io (https://morph.io)
 // including some code snippets below that you should find helpful
 
-// require 'scraperwiki.php';
-// require 'scraperwiki/simple_html_dom.php';
+require 'scraperwiki.php';
+require 'scraperwiki/simple_html_dom.php';
 $browser	=	file_get_html('https://indiankanoon.org/browse');
 foreach($browser->find("//td/div[@class='browselist']/")as $element)
 {
