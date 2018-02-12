@@ -28,7 +28,7 @@ if($page)
 					$urlofpage	=	'https://indiankanoon.org'.$monthname.'<br>';
           
           $record = array( 'urlofpage' =>$urlofpage);
-          craperwiki::save(array('urlofpage'), $record);
+          scraperwiki::save(array('urlofpage'), $record);
 				}
 			}
 		}
