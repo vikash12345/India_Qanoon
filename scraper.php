@@ -4,24 +4,35 @@
 
 // require 'scraperwiki.php';
 // require 'scraperwiki/simple_html_dom.php';
-//
-// // Read in a page
-// $html = scraperwiki::scrape("http://foo.com");
-//
-// // Find something on the page using css selectors
-// $dom = new simple_html_dom();
-// $dom->load($html);
-// print_r($dom->find("table.list"));
-//
-// // Write out to the sqlite database using scraperwiki library
-// scraperwiki::save_sqlite(array('name'), array('name' => 'susan', 'occupation' => 'software developer'));
-//
-// // An arbitrary query against the database
-// scraperwiki::select("* from data where 'name'='peter'")
+$browser	=	file_get_html('https://indiankanoon.org/browse');
+foreach($browser->find("//td/div[@class='browselist']/")as $element)
+{
+$page 		=	$element->find("a",0)->href;
 
-// You don't have to do things with the ScraperWiki library.
-// You can use whatever libraries you want: https://morph.io/documentation/php
-// All that matters is that your final data is written to an SQLite database
-// called "data.sqlite" in the current working directory which has at least a table
-// called "data".
+if($page)
+{
+	$link	=	'https://indiankanoon.org/'.$page;
+	$pageofyears	=	file_get_html($link);
+	foreach($pageofyears->find("/html/body/div[2]/table/tbody/tr/td/div[@class='browselist']")as $year)
+	{
+		$yearlink	=	$year->find("a",0)->href;
+		if($yearlink)
+		{
+			$pagelink		=	 'https://indiankanoon.org'.$yearlink;
+			$openyearpage	=	  file_get_html($pagelink);
+			if($openyearpage)
+			{
+				foreach($openyearpage->find("//td/div[@class='browselist']")as $month)
+				{
+					 $monthname	=	$month->find("a",0)->href;
+					$urlofpage	=	'https://indiankanoon.org'.$monthname.'<br>';
+          
+          $record = array( 'urlofpage' =>$urlofpage);
+          craperwiki::save(array('urlofpage'), $record);
+				}
+			}
+		}
+	}
+}
+}
 ?>
