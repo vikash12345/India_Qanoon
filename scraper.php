@@ -27,7 +27,8 @@ if($page)
 				foreach($openyearpage->find("//td/div[@class='browselist']")as $month)
 				{
 					 $monthname	=	$month->find("a",0)->href;
-					$urlofpage	=	'https://indiankanoon.org'.$monthname.'<br>';
+					$urlofpage	=	'https://indiankanoon.org'.$monthname;
+					echo $urlofpage.'<br>';
           
           $record = array( 'urlofpage' =>$urlofpage);
           scraperwiki::save(array('urlofpage'), $record);
