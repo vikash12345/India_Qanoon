@@ -28,9 +28,15 @@ if($page)
 				{
 					 $monthname	=	$month->find("a",0)->href;
 					$urlofpage	=	'https://indiankanoon.org'.$monthname;
-					echo $urlofpage.'<br>';
-          
-          $record = array( 'urlofpage' =>$urlofpage);
+					$pagination	=	$urlofpage.'&pagenum=';
+          				$linkofpage	=	file_get_tml($pagination);
+        				if($linkofpage)
+					{
+					
+					}
+					
+					
+	  $record = array( 'urlofpage' =>$urlofpage);
           scraperwiki::save(array('urlofpage'), $record);
 				}
 			}
