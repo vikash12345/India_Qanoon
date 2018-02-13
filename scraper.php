@@ -29,7 +29,7 @@ if($page)
 					 $monthname	=	$month->find("a",0)->href;
 					$urlofpage	=	'https://indiankanoon.org'.$monthname;
 					$pagination	=	$urlofpage.'&pagenum=';
-          				$linkofpage	=	file_get_tml($pagination);
+          				$linkofpage	=	file_get_html($pagination);
         				if($linkofpage)
 					{
 					
