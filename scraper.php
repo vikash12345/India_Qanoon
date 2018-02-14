@@ -38,7 +38,6 @@ if($page)
 		{
 				$RecordLoop+=  1;
 				$paginationlink		=	$urlofpage.'&pagenum='.$RecordLoop;
-				echo $paginationlink.'<br>';
 				$mainpageofprofiles 		=	file_get_html($paginationlink);
 				$checkerprofile	=	$mainpageofprofiles->find("/html/body/div/div[3]/form/input[3]",0);
 				if (!$checkerprofile) 
@@ -50,7 +49,7 @@ if($page)
 					{
 						 
 						//Name of Case
-						echo $vsname		=	$element->find("//a[@class='result_url']",0);
+						$vsname		=	$element->find("//a[@class='result_url']",0);
 						
 						//Link of Case
 						$lvsname		=	$element->find("//a[@class='result_url']",0)->href;
