@@ -44,7 +44,7 @@ require 'scraperwiki/simple_html_dom.php';
 					$checkerprofile	=	$mainpageofprofiles->find("/html/body/div/div[3]/form/input[3]",0);
 			
 			
-					echo $pagetext.$yeartext.$monthtext.$paginationlink;
+					
 
 
 					if (!$checkerprofile) 
@@ -74,7 +74,7 @@ require 'scraperwiki/simple_html_dom.php';
 							//This is for Full Document	
 							$fulldocument	=	$element->find("//a[plaintext^=Full Document]", 0)->href;
 								
-						
+						echo $pagetext.$yeartext.$monthtext.$paginationlink;
 						//  End if nor more records
 							 $record = array( 'vsname' =>$vsname,
 									 'link' =>$link,
