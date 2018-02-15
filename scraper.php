@@ -49,7 +49,7 @@ require 'scraperwiki/simple_html_dom.php';
 						{
 
 							//Name of Case
-							$vsname		=	$element->find("//a[@class='result_url']",0);
+							$vsname		=	$element->find("//a[@class='result_url']",0)->plaintext;
 
 							//Link of Case
 							$lvsname		=	$element->find("//a[@class='result_url']",0)->href;
