@@ -29,7 +29,7 @@ require 'scraperwiki/simple_html_dom.php';
 						$monthname	=	$month->find("a",0)->href;
 						$monthtext	=	$month->find("a",0)->plaintext;
 						$correctlink	=	'https://indiankanoon.org'.$monthname;
-						echo $urlofpage	=	str_replace(" ","%20",$correctlink);
+						$urlofpage	=	str_replace(" ","%20",$correctlink);
 						$html		=		file_get_html($urlofpage);
 		if($html)
 		{
