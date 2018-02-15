@@ -26,7 +26,7 @@ require 'scraperwiki/simple_html_dom.php';
 					foreach($openyearpage->find("//td/div[@class='browselist']")as $month)
 					{
 						$monthname	=	$month->find("a",0)->href;
-						echo $urlofpage	=	str_replace("","%20",'https://indiankanoon.org'.$monthname);
+						echo $urlofpage	=	str_replace("%20"," ",'https://indiankanoon.org'.$monthname);
 						$html		=		file_get_html($urlofpage);
 		if($html)
 		{
