@@ -16,6 +16,7 @@ require 'scraperwiki/simple_html_dom.php';
 		foreach($pageofyears->find("/html/body/div[2]/table/tbody/tr/td/div[@class='browselist']")as $year)
 		{
 			$yearlink	=	$year->find("a",0)->href;
+			$yeartext	=	$year->find("a",0)->plaintext;
 
 			if($yearlink)
 			{
@@ -26,6 +27,7 @@ require 'scraperwiki/simple_html_dom.php';
 					foreach($openyearpage->find("//td/div[@class='browselist']")as $month)
 					{
 						$monthname	=	$month->find("a",0)->href;
+						$monthtext	=	$month->find("a",0)->plaintext;
 						$correctlink	=	'https://indiankanoon.org'.$monthname;
 						echo $urlofpage	=	str_replace(" ","%20",$correctlink);
 						$html		=		file_get_html($urlofpage);
@@ -40,6 +42,11 @@ require 'scraperwiki/simple_html_dom.php';
 					$paginationlink		=	$urlofpage.'&pagenum='.$RecordLoop;
 					$mainpageofprofiles 		=	file_get_html($paginationlink);
 					$checkerprofile	=	$mainpageofprofiles->find("/html/body/div/div[3]/form/input[3]",0);
+			
+			
+					echo $pagetext.$yeartext.$monthtext.$paginationlink;
+
+
 					if (!$checkerprofile) 
 								{
 									$RecordFlag =   false;
@@ -66,7 +73,9 @@ require 'scraperwiki/simple_html_dom.php';
 
 							//This is for Full Document	
 							$fulldocument	=	$element->find("//a[plaintext^=Full Document]", 0)->href;
-							 //  End if nor more records
+								
+						
+						//  End if nor more records
 							 $record = array( 'vsname' =>$vsname,
 									 'link' =>$link,
 									 'pagelink' => $pagelink,
