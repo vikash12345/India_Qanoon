@@ -9,7 +9,7 @@ require 'scraperwiki/simple_html_dom.php';
 	{
 	$page 		=	$element->find("a[plaintext^=Bombay High Court]",0)->href;
 	$pagetext	=	$element->find("a[plaintext^=Bombay High Court]	",0)->plaintext;
-	echo "$pagetext\n";
+	
 	if($page)
 	{
 		$link	=	'https://indiankanoon.org/'.$page;
@@ -65,7 +65,7 @@ require 'scraperwiki/simple_html_dom.php';
 							$lcite	=	$element->find("a[@class='cite_tag']",0)->href;
 							//This is for Full Document	
 							$fulldocument	=	$element->find("//a[plaintext^=Full Document]", 0)->href;
-														 
+							echo "Scraper Inprogress don't stop";							 
 						//  End if nor more records
 							 $record = array( 'vsname' =>$vsname,
 									 'link' =>$link,
