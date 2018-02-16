@@ -11,7 +11,8 @@ require 'scraperwiki/simple_html_dom.php';
 	$pagetext	=	$element->find("a[plaintext^=Bombay High Court]	",0)->plaintext;
 	
 	if($page)
-	{
+	{	
+		echo "Scraper Inprogress don't stop";
 		$link	=	'https://indiankanoon.org/'.$page;
 		$pageofyears	=	file_get_html($link);
 		foreach($pageofyears->find("/html/body/div[2]/table/tbody/tr/td/div[@class='browselist']")as $year)
@@ -65,7 +66,7 @@ require 'scraperwiki/simple_html_dom.php';
 							$lcite	=	$element->find("a[@class='cite_tag']",0)->href;
 							//This is for Full Document	
 							$fulldocument	=	$element->find("//a[plaintext^=Full Document]", 0)->href;
-							echo "Scraper Inprogress don't stop";							 
+														 
 						//  End if nor more records
 							 $record = array( 'vsname' =>$vsname,
 									 'link' =>$link,
