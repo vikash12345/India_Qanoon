@@ -1,14 +1,15 @@
-<?
+<?php
 // This is a template for a PHP scraper on morph.io (https://morph.io)
 // including some code snippets below that you should find helpful
-
 require 'scraperwiki.php';
 require 'scraperwiki/simple_html_dom.php';
+//require	'simple_html_dom.php';
 	$browser	=	file_get_html('https://indiankanoon.org/browse');
 	foreach($browser->find("//td/div[@class='browselist']/")as $element)
 	{
-	$page 		=	$element->find("a",0)->href;
-	$pagetext	=	$element->find("a",0)->plaintext;
+	$page 		=	$element->find("a[plaintext^=Bombay High Court]",0)->href;
+	$pagetext	=	$element->find("a[plaintext^=Bombay High Court]	",0)->plaintext;
+	echo "$pagetext\n";
 	if($page)
 	{
 		$link	=	'https://indiankanoon.org/'.$page;
@@ -17,7 +18,6 @@ require 'scraperwiki/simple_html_dom.php';
 		{
 			$yearlink	=	$year->find("a",0)->href;
 			$yeartext	=	$year->find("a",0)->plaintext;
-
 			if($yearlink)
 			{
 				$pagelink		=	 'https://indiankanoon.org'.$yearlink;
@@ -45,36 +45,27 @@ require 'scraperwiki/simple_html_dom.php';
 			
 			
 					
-
-
 					if (!$checkerprofile) 
 								{
+									echo "$pagetext...\n";
 									$RecordFlag =   false;
 									break;
 								}			
 					foreach($mainpageofprofiles->find("//div/div/div[@class='result']") as $element)
 						{
-
 							//Name of Case
 							$vsname		=	$element->find("//a[@class='result_url']",0)->plaintext;
-
 							//Link of Case
 							$lvsname		=	$element->find("//a[@class='result_url']",0)->href;
-
 							//This is for Name of judicary
 							 $courtname	=	$element->find("div[@class='docsource']",0)->plaintext;
-
 							//Text of Cite
 							$cite	=	$element->find("a[@class='cite_tag']",0)->plaintext;
-
 							//Link of Cite
 							$lcite	=	$element->find("a[@class='cite_tag']",0)->href;
-
-
 							//This is for Full Document	
 							$fulldocument	=	$element->find("//a[plaintext^=Full Document]", 0)->href;
-								
-						echo $pagetext.$yeartext.$monthtext.$paginationlink;
+														 
 						//  End if nor more records
 							 $record = array( 'vsname' =>$vsname,
 									 'link' =>$link,
@@ -85,19 +76,10 @@ require 'scraperwiki/simple_html_dom.php';
 									 'cite' =>$cite,
 									 'lcite' =>$lcite,
 									 'paginationlink' =>$paginationlink);
-		  scraperwiki::save(array('vsname','link','pagelink','urlofpage','lvsname','courtname','cite','lcite','paginationlink'), $record);
+		  scraperwiki::save(array('vsname','link','pagelink','urlofpage','lvsname','courtname','cite','lcite','paginationlink'), $record); 
 						}
-
-
-
-
-
 			}
-
 		}
-
-
-
 					}
 				}
 			}
